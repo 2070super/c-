@@ -15,5 +15,7 @@ int main()
     d2++;//自增
     d2.print();
     Date d3(d1);//构造一个与d1相同的类
+    
+    cout << d2;
     return 0;
 }

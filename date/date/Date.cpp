@@ -1,6 +1,4 @@
 #include"Date.h"
-#include<iostream>
-using namespace std;
 	// 获取某年某月的天数
 	int Date::GetMonthDay(int year, int month)
 	{
@@ -236,4 +234,14 @@ using namespace std;
 	void Date::print()
 	{
 		cout << _year << "-" << _month << "-" << _day << endl;
+	}
+	ostream& operator <<(ostream& out, const Date& d)//由于class类中有隐藏变量this，所以不能放入类中进行定义。
+	{
+		out << d._year << "-" << d._month << "-" << d._day << endl;
+		return out;
+	}
+	istream& operator >>(istream& in, Date& d)
+	{
+		in >> d._year >> d._month >> d._day;
+		return in;
 	}

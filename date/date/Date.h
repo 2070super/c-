@@ -1,5 +1,9 @@
+#include<iostream>
+using namespace std;
 class Date
 {
+	friend ostream& operator <<(ostream& out, const Date& d);
+	friend istream& operator >>(istream& in, Date& d);
 public:
 	int GetMonthDay(int year, int month);
 	void print();
@@ -26,4 +30,5 @@ private:
 	int _month;
 	int _day;
 };
-
+ostream& operator <<(ostream& out, const Date& d);
+istream& operator >>(istream& in, Date& d);
