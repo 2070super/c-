@@ -2,11 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-<<<<<<< HEAD
-      <FullPath>C:\Users\admin\Desktop\code\c-\string类的详细实现\x64\Debug\string类的详细实现.exe</FullPath>
-=======
-      <FullPath>C:\Users\admin\Desktop\code\leecode\string类的详细实现\x64\Debug\string类的详细实现.exe</FullPath>
->>>>>>> 73c5ae3cda9e37236eb72425895be945300cd90f
+      <FullPath>C:\Users\admin\Desktop\新建文件夹\c-\string类的详细实现\x64\Debug\string类的详细实现.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

@@ -2,6 +2,7 @@
 #include<iostream>
 #include <cassert>
 #include<algorithm>
+using namespace std;
 namespace haha
 {
 	class string
@@ -37,6 +38,8 @@ namespace haha
 		string& operator+=(const char* ch);
 		string(const string& s);
 		string& operator=(const string& s);
+		void swap( string& s);
+		void print();
 	private:
 		char* _str;
 		size_t _size;

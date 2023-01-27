@@ -34,7 +34,7 @@ void haha::string::reserve(size_t t)
 {
 	if (t > _capacity)
 	{
-		char* tmp = new char[t];//new和realloc在内置类型上没有区别，但是new自动捕获异常，realloc不会，但是在自定义类型new支持，realloc不行。
+		char* tmp = new char[t+1];//new和realloc在内置类型上没有区别，但是new自动捕获异常，realloc不会，但是在自定义类型new支持，realloc不行。另外注意拷贝函数是将、0一起拷贝，需要加1.
 		strcpy(tmp, _str);
 		delete[]_str;
 		_str = tmp;
@@ -49,6 +49,7 @@ void haha::string::push_back(char ch)
 	}
 	_str[_size] = ch;
 	_size++;
+	_str[_size] = '\0';//把
 }
 void haha::string::append(const char* ch)
 {
@@ -78,13 +79,38 @@ haha::string& haha::string::operator+=(const string& ch)
 //s1(s2)
 haha::string::string(const string& s)
 	:_str(nullptr)//不添加的话运行结束后会将s._str所指向的区域析构了。
+	,_capacity(0)
+	,_size(0)
 {
 	string tmp(s._str);
-	swap(_str, tmp._str);
+	swap(tmp);//this->swap(tmp);
+	//std::swap(_str, tmp._str);
+	//std::swap(_size, tmp._size);
+	//std::swap(_capacity, tmp._capacity);
 }
 //s1=s3
 haha::string& haha::string::operator=(const string& s)
 {
-	string tmp( );
-	swap(_str, s._str);
+	if (this != &s)
+	{
+		string tmp(s._str);
+		swap(tmp);
+	}
+	return *this;
+}
+void haha::string::swap( string& s)
+{
+	std::swap(_str, s._str);
+	std::swap(_size, s._size);
+	std::swap(_capacity, s._capacity);
+}
+void haha::string::print()
+{
+	auto it = begin();
+	while (it != end())
+	{
+		cout << *it;
+		++it;
+	}
+	cout << endl;
 }

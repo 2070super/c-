@@ -1,6 +1,2 @@
-PlatformToolSet=v143:VCToolArchitecture=Native64Bit:VCToolsVersion=14.31.31103:TargetPlatformVersion=10.0.19041.0:
-<<<<<<< HEAD
-Debug|x64|C:\Users\admin\Desktop\code\c-\string类的详细实现\|
-=======
-Debug|x64|C:\Users\admin\Desktop\code\leecode\string类的详细实现\|
->>>>>>> 73c5ae3cda9e37236eb72425895be945300cd90f
+PlatformToolSet=v143:VCToolArchitecture=Native64Bit:VCToolsVersion=14.34.31933:TargetPlatformVersion=10.0.19041.0:
+Debug|x64|C:\Users\admin\Desktop\新建文件夹\c-\string类的详细实现\|
