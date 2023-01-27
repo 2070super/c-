@@ -49,7 +49,7 @@ void haha::string::push_back(char ch)
 	}
 	_str[_size] = ch;
 	_size++;
-	_str[_size] = '\0';//把
+	_str[_size] = '\0';
 }
 void haha::string::append(const char* ch)
 {
@@ -113,4 +113,67 @@ void haha::string::print()
 		++it;
 	}
 	cout << endl;
+}
+void haha::string::resize(size_t n, char ch ='\0')
+{
+
+	if (n < _size)
+	{
+		_str[n] = '\0';
+		_size = n;
+	}
+	else
+	{
+		if (n > _capacity)
+		{
+			reserve(n);
+		}
+		for (size_t i = _size; i < n; ++i)
+		{
+			_str[i] = ch;
+		}
+		_str[n] = '\0';
+	}
+}
+void haha::string::insert(size_t n,char ch)
+{
+	assert(n <= _size);
+	if (_capacity == _size)
+	{
+		reserve(2 * _capacity);
+	}
+	size_t end = _size+1;//无符号整数，加1是为了考虑0的情况
+	//while (end >= n)//这里不能改成int，该行比较的时候会出现隐式提升
+	while (end > n)
+	{
+		_str[end + 1] = _str[end];
+		end--;
+	}
+	_str[n] = ch;
+	_size++;
+}
+void haha::string::insert(size_t n, const char* str)
+{
+	assert(n <= _size);
+	size_t len = strlen(str);
+	if (_size + len > _capacity)
+	{
+		reserve(_size + len);
+	}
+	size_t end = _size + len;
+	while (end > n+len)
+	{
+		_str[end] = _str[end - len];
+		--end;
+	}
+	strncpy(_str + n, str, len);
+	_size += len;
+}
+char* haha::string::c_str(const string& s)
+{
+	return _str;
+}
+void haha::string::erase(size_t pos, size_t len=npos)
+{
+
 }

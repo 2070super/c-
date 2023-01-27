@@ -40,9 +40,17 @@ namespace haha
 		string& operator=(const string& s);
 		void swap( string& s);
 		void print();
+		void resize(size_t n, char ch );
+		void insert(size_t n, const char* str);
+		void insert(size_t n, char ch);
+		char* c_str(const string& s);
+		void erase(size_t pos, size_t len);
 	private:
 		char* _str;
 		size_t _size;
 		size_t _capacity;
+	public:
+		static const size_t npos;
 	};
 }
+const size_t npos = -1;
