@@ -1,3 +1,9 @@
 ﻿  main.cpp
+<<<<<<< HEAD
 C:\Users\admin\Desktop\code\c-\string类的详细实现\string类的详细实现\main.cpp(7,15): warning C4930: “haha::string s3(void)”: 未调用原型函数(是否是有意用变量定义的?)
   string类的详细实现.vcxproj -> C:\Users\admin\Desktop\code\c-\string类的详细实现\x64\Debug\string类的详细实现.exe
+=======
+  string.cpp
+  正在生成代码...
+  string类的详细实现.vcxproj -> C:\Users\admin\Desktop\code\leecode\string类的详细实现\x64\Debug\string类的详细实现.exe
+>>>>>>> 73c5ae3cda9e37236eb72425895be945300cd90f
