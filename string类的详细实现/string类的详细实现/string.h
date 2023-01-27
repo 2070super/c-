@@ -36,11 +36,7 @@ namespace haha
 		string& operator+=(const string& ch);
 		string& operator+=(const char* ch);
 		string(const string& s);
-<<<<<<< HEAD
 		string& operator=(const string& s);
-=======
-		void swap(char* a, char* b);
->>>>>>> 73c5ae3cda9e37236eb72425895be945300cd90f
 	private:
 		char* _str;
 		size_t _size;
