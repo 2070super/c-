@@ -22,6 +22,11 @@ char& haha::string::operator[](size_t t)
 	assert(t < _size);
 	return _str[t];
 }
+char& haha::string::operator[](size_t t) const
+{
+	assert(t < _size);
+	return _str[t];
+}
  //haha::string::iterator begin()
 //{
 	//return haha::string::_str;
@@ -30,11 +35,15 @@ size_t haha::string::size()
 {
 	return _size;
 }
+size_t haha::string::size() const
+{
+	return _size;
+}
 void haha::string::reserve(size_t t)
 {
 	if (t > _capacity)
 	{
-		char* tmp = new char[t+1];//new和realloc在内置类型上没有区别，但是new自动捕获异常，realloc不会，但是在自定义类型new支持，realloc不行。另外注意拷贝函数是将、0一起拷贝，需要加1.
+		char* tmp = new char[t+1];//new和realloc在内置类型上没有区别，但是new自动捕获异常，realloc不会，但是在自定义类型new支持，realloc不行。另外注意拷贝函数是将\0一起拷贝，需要加1.
 		strcpy(tmp, _str);
 		delete[]_str;
 		_str = tmp;
@@ -175,5 +184,110 @@ char* haha::string::c_str(const string& s)
 }
 void haha::string::erase(size_t pos, size_t len=npos)
 {
+	assert(pos < _size);
+	if (len==npos||len + pos >= _size)
+	{
+		_size = pos;
+		_str[pos] = '\0';
+	}
+	else
+	{
+		strcpy(_str + pos, _str + pos + len);
+		_size -= len;
+	}
+}
+size_t haha::string::find(size_t pos, char ch)
+{
+	for (size_t i = pos; i < _size; i++)
+	{
+		if (_str[i] == ch)
+		{
+			return i;
+		}
+	}
+	return npos;
+}
+size_t haha::string::find(const char* sub, size_t pos=0)
+{
+	const char* local = strstr(_str + pos, sub);
+	if (local== nullptr)
+	{
+		return npos;
+	}
+	else
+	{
+		return local - _str;
+	}
+}
+bool operator >(const haha::string& s1,const haha::string& s2)
+{
+	size_t i1 = 0, i2 = 0;
+	while (i1 < s1.size() && i2 < s2.size())
+	{
+		if (s1[i1] > s2[i2])
+		{
+			return true;
+		}
+		else if (s1[i1] < s2[i2])
+		{
+			return false;
+		}
+		else
+		{
+			++i1;
+			++i2;
+		}
+	}
+	if (i1 < s1.size())
+	{
+		return true;
+	}
+	if (i2 < s2.size())
+	{
+		return false;
+	}
+	
+}
+bool operator ==(const haha::string& s1, const haha::string& s2)
+{
+	if (s1.size() == s2.size())
+		return true;
+	else
+		return false;
+}
+bool operator <(const haha::string& s1, const haha::string& s2)
+{
+	if (s1 > s2||s1==s2)
+	{
+		return false;
+	}
+	else 
+	{
+		return true;
+	}
+}
+ostream& operator<< (ostream& out, const haha::string & s)
+{
+	for (size_t i = 0; i < s.size(); i++)
+	{
+		out << s[i];
+	}
+	return out;
+}
+istream& operator>>(istream& in,  haha::string& s)
+{
+	s.resize(0);//防止出现引用。
+	char ch;
+	while (1)
 
+	{
+		if (ch == ' ' || ch == '\0')
+		{
+			break;
+		}
+		else
+		{
+			s += ch;
+		}
+	}
 }
