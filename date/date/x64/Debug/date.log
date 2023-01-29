@@ -1,5 +1,0 @@
-﻿  Date.cpp
-  main.cpp
-  正在生成代码...
-C:\Users\admin\Desktop\code\c-\date\date\Date.cpp(141): warning C4172: 返回局部变量或临时变量的地址: ret
-  date.vcxproj -> C:\Users\admin\Desktop\code\c-\date\x64\Debug\date.exe

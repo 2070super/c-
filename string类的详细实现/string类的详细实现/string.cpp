@@ -1,7 +1,7 @@
 #pragma warning(disable:4996)
 #include"string.h"
 using namespace std;
-haha::string::string(const char* str="")
+haha::string::string(const char* str)
 //:_str(new char[strlen(str)+1])
 //,_size(strlen(str))
 //,_capacity(strlen(str)) 一般是自定义类型放入初始化列表，内置变量不用。
@@ -53,9 +53,14 @@ void haha::string::reserve(size_t t)
 void haha::string::push_back(char ch)
 {
 	if (_capacity == _size)
+		if(_capacity!=0)   
 	{
 		reserve(2 * _capacity);
 	}
+		else
+		{
+			reserve(1);
+		}
 	_str[_size] = ch;
 	_size++;
 	_str[_size] = '\0';
@@ -169,12 +174,13 @@ void haha::string::insert(size_t n, const char* str)
 	{
 		reserve(_size + len);
 	}
-	size_t end = _size + len;
-	while (end > n+len)
+	size_t end = _size + len+1;
+	while (end >= n+len)
 	{
-		_str[end] = _str[end - len];
+		_str[end-1] = _str[end - len-1];
 		--end;
 	}
+
 	strncpy(_str + n, str, len);
 	_size += len;
 }
@@ -278,6 +284,8 @@ istream& operator>>(istream& in,  haha::string& s)
 {
 	s.resize(0);//防止出现引用。
 	char ch;
+	//in>>ch 无法使用，因为in无法插入'\0'
+	in.get(ch);
 	while (1)
 
 	{
@@ -290,4 +298,5 @@ istream& operator>>(istream& in,  haha::string& s)
 			s += ch;
 		}
 	}
+	return in;
 }

@@ -9,7 +9,6 @@ namespace haha
 	{
 	public:
 		~string();
-		string();
 		typedef char* iterator;
 		iterator begin()//暂时不知道如何将该方法写入cpp
 		{
@@ -27,7 +26,7 @@ namespace haha
 		{
 			return _str + _size;
 		}
-		string(const char* str);
+		string(const char* str="");
 		size_t size();
 		size_t size() const;
 		char& operator[](size_t t);
@@ -55,10 +54,9 @@ namespace haha
 		size_t _size;
 		size_t _capacity;
 	public:
-		static const size_t npos;
+		static const size_t npos=-1;
 	};
 }
-const size_t npos = -1;
 bool operator==(const string & s1, const string & s2);
 bool operator>(const string& s1, const string& s2);
 bool operator <(const haha::string& s1, const haha::string& s2);
