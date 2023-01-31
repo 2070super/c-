@@ -16,9 +16,10 @@ void test()
 		std::cout << v[i] << std::endl;
 	}
 	bit::vector<int>::iterator it = v.begin();
-	while (it != v.end())
+	while (it == v.end())
 	{
 		std::cout << *it << std::endl;
+		it++;
 	}
 }
 int main()

@@ -28,7 +28,15 @@ void bit::vector<T>::check_vector()
 {
 	if (_finish == _endofstorage)
 	{
-		size_t newcapacity = capacity() == 0 ? 4 : capacity() * 2;
+		size_t newcapacity;
+		if (_endofstorage == 0)
+		{
+			newcapacity = 4;
+		}
+		else
+		{
+			newcapacity = capacity() * 2;
+		}
 		reserve(newcapacity);
 		//不能用malloc这些，因为模板可能会有自定义类
 	}
