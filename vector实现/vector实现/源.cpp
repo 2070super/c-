@@ -1,6 +1,7 @@
 #include"vector.h"
 #include <iostream>
 #include"vector.cpp"
+using namespace std;
 void test()
 {
 	bit::vector<int> v;
@@ -16,15 +17,27 @@ void test()
 		std::cout << v[i] << std::endl;
 	}
 	bit::vector<int>::iterator it = v.begin();
-	while (it == v.end())
+	while (it != v.end())
 	{
 		std::cout << *it << std::endl;
 		it++;
+		auto it = std::find(v.begin(), v.end(), 3);
+		v.insert(it, 30);
 	}
+}
+void test1()
+{
+	bit::vector<int> v(3, 2);
+	v.resize(8);
+	for (size_t i = 0; i < v.size(); i++)
+	{
+		std::cout << v[i] << std::endl;
+	}
+	
 }
 int main()
 {
 	
-	test();
+	test1();
 	return 0;
 }
