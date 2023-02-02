@@ -35,9 +35,22 @@ void test1()
 	}
 	
 }
+void test2()
+{
+	bit::vector<string> v;
+	v.push_back("1111");
+	v.push_back("1111");
+	v.push_back("1111");
+	v.push_back("1111");
+	v.push_back("1111");
+	for (size_t i = 0; i < v.size(); i++)
+	{
+		std::cout << v[i] << std::endl;
+	}
+}
 int main()
 {
 	
-	test1();
+	test2();
 	return 0;
 }

@@ -79,7 +79,11 @@ void bit::vector<T>::reserve(size_t s)
 		size_t newsize = size();
 		size_t newcapacity = s;
 		T* tmp = new T[s];
-		memcpy(tmp, _start, sizeof(T) * size());
+		//memcpy(tmp, _start, sizeof(T) * size());由于是浅拷贝，新的string中_Str传过去只会传值，但是在析构后_str就变成了野指针。
+		for (size_t i = 0; i <newsize;++i)
+		{
+			tmp[i] = _start[i];
+		}
 
 		delete[] _start;
 		_start = tmp;
