@@ -8,22 +8,71 @@ namespace bit
 		T _data;
 		_list_node<T>* _next;
 		_list_node<T>* _prev;
-		_list_node(const T& x)
+		_list_node(const T& x=T())
 			:_data(x),
 			_next(nullptr),
 			_prev(nullptr)
 		{}
+	};
+	template<class T, class Ref, class Ptr>
+	struct _list_iterator
+	{
+		typedef _list_node<T> *PNode;
+		typedef _list_iterator<T, Ref, Ptr> Self;
+		PNode _pNode;
+		_list_iterator(PNode pNode = nullptr)
+			: _pNode(pNode)
+		{}
+		bool operator!=(const Self& l)
+		{
+			return _pNode != l._pNode; 
+		}
+		bool operator==(const Self& l) 
+		{
+			return _pNode != l._pNode; 
+		}
+		_list_iterator(const Self& l)
+			: _pNode(l._pNode)
+		{}
+		Ref operator*() 
+		{ return _pNode->_data; }
+		Ptr operator->() 
+		{ return &(operator*()); }
+		Self& operator++()
+		{
+			_pNode = _pNode->_next;
+			return *this;
+		}
+
+		Self operator++(int)
+		{
+			Self temp(*this);
+			_pNode = _pNode->_next;
+			return temp;
+		}
+		Self& operator--()
+		{
+			_pNode = _pNode->_prev;
+			return *this;
+		}
+		Self& operator--(int)
+		{
+			Self temp(*this);
+			_pNode = _pNode->_prev;
+			return temp;
+		}
+
 	};
 	template<class T>
 	class list
 	{
 		typedef _list_node<T> node;
 	public:
+		typedef _list_iterator<T,T&,T*> iterator;
+		typedef _list_iterator<T,const T&,const T*> const_iterator;
 		list()
 		{
-			_head == new node(T());
-			_head->next = _head;
-			_head->prev = _head;
+			CreateHead();
 		}
 
 		void push_back(const T& x)
@@ -35,54 +84,63 @@ namespace bit
 			newcode->_next = _head;
 			_head->_prev = newcode;
 		}
-		typedef _list_iterator<T,T&,T*> iterator;
-		typedef _list_iterator<T, const T&,const T*> const_iterator;
 		iterator begin()
 		{
 			return _head->_next;
 		}
 		iterator end()
 		{
-			return _head;
+			return _head->_prev;
 		}
-		const_iterator begin() const
+		template <class Iterator>
+		list(Iterator first, Iterator last)
 		{
-			return _head->_next;
+			CreateHead();
+			while (first != last)
+			{
+				push_back(*first);
+				++first;
+			}
 		}
-		const_iterator end() const
+		~list()
 		{
-			return _head;
+			delete _head;
+			_head = nullptr;
 		}
-	private:
-		node* _head;
+		iterator insert(iterator pos, const T& val)
+		{
+			node pNewNode = new node(val);
+			node pCur = pos._node;
+			// 先将新节点插入
+			pNewNode->_prev = pCur->_prev;
+			pNewNode->_next = pCur;
+			pNewNode->_prev->_next = pNewNode;
+			pCur->_prev = pNewNode;
+			return iterator(pNewNode);
+		}
+		// 删除pos位置的节点，返回该节点的下一个位置
+		iterator erase(iterator pos)
+		{
+			// 找到待删除的节点
+			node pDel = pos._pNode;
+			node pRet = pDel->_next;
+
+			pDel->_prev->_next = pDel->_next;
+			pDel->_next->_prev = pDel->_prev;
+			delete pDel;
+			return iterator(pRet);
+		}
+
+		private:
+			node* _head;
+			void CreateHead()
+			{
+				_head = new node;
+				_head->_prev = _head;
+				_head->_next = _head;
+			}
+
 	};
-	template<class T, class Ref, class Ptr>
-	struct _list_iterator
-	{
-		typedef _list_node<T> node;
-		typedef _list_iterator<T,Ref,Ptr> self;
-		node* _node;
-		_list_node(node* s)
-			:_node(s)
-		{
-		}
-		bool operator!=(const self& s)
-		{
-			return _node != self._node;
-		}
-		bool operator==(const self& s)
-		{
-			return !(*this != s);
-		}
-		self operator *()
-		{
-			return _node->_data;
-		}
-		self& opertator++()
-		{
-			_node = _node->next;
-			return *this;
-		}
-		iterator begin()
-	};
+	
+
 }

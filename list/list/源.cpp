@@ -12,11 +12,6 @@ void test1()
 	l.push_back(6);
 	l.push_back(7);
 	bit::list<int>::iterator it = l.begin();
-	while (it != l.end())
-	{
-		cout << *it << endl;
-		++it;
-	}
 }
 void test2()
 {
@@ -28,13 +23,7 @@ void test2()
 	l.push_back(5);
 	l.push_back(6);
 	l.push_back(7);
-	
-	bit::list<int>::iterator i = l.begin();
-	while (i != l.end())
-	{
-		cout << *i << endl;
-		++i;
-	}
+
 }
 int main()
 {
