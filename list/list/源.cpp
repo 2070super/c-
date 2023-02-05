@@ -12,6 +12,9 @@ void test1()
 	l.push_back(6);
 	l.push_back(7);
 	bit::list<int>::iterator it = l.begin();
+	bit::list <int> a;
+	a(l);
+
 }
 void test2()
 {

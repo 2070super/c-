@@ -104,8 +104,17 @@ namespace bit
 		}
 		~list()
 		{
+			clear();
 			delete _head;
 			_head = nullptr;
+		}
+		void clear()
+		{
+			iterator it = begin();
+			while (it != end())
+			{
+				it = erase(it);
+			}
 		}
 		iterator insert(iterator pos, const T& val)
 		{
@@ -130,6 +139,17 @@ namespace bit
 			delete pDel;
 			return iterator(pRet);
 		}
+		list(const list<T>& lt)
+		{
+			CreateHead();
+			iterator it = lt.begin();
+			while (it != lt.begin())
+			{
+				push_back(*it);
+				it++;
+			}
+		}
+
 
 		private:
 			node* _head;
