@@ -150,7 +150,6 @@ namespace bit
 			}
 		}
 
-
 		private:
 			node* _head;
 			void CreateHead()
