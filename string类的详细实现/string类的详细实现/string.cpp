@@ -300,3 +300,20 @@ istream& operator>>(istream& in,  haha::string& s)
 	}
 	return in;
 }
+typedef char* iterator;
+haha::string::iterator haha::string::begin()
+{
+	return _str;
+}
+haha::string::iterator haha::string::end()
+{
+	return _str + _size;
+}
+ haha::string::iterator haha::string::begin() const
+{
+	return _str;
+}
+ haha::string::iterator haha::string::end() const
+{
+	return _str + _size;
+}
