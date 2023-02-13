@@ -6,7 +6,7 @@ void Adjustdown(HPDataType* a, int n,int root)
 	int child = parent * 2 + 1;//leftchild
 	while (child < n)
 	{
-		if(a[child + 1] < a[child])//左右孩子比较
+		if(a[child + 1] < a[child]&&child+1<n)//左右孩子比较
 		{
 			child++;
 		}
@@ -46,9 +46,22 @@ void Heapinit(Heap* p, HPDataType* a, int n)
 
 void HeapDestory(Heap* p)
 {
+	free(p->_a);
+	p->_a = NULL;
+	p->_size = 0;
+	p->_capacity = 0;
+
 }
 
 void Heappush(Heap* p, HPDataType x)
 {
+}
+
+void Heapsort(int* a, int n)//堆排序
+{
+	for (int i = (n - 2) / 2; i >= 0; --i)
+	{
+		Adjustdown(a, n, i);
+	}
 }
 
