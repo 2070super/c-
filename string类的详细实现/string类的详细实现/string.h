@@ -10,22 +10,10 @@ namespace haha
 	public:
 		~string();
 		typedef char* iterator;
-		iterator begin()//暂时不知道如何将该方法写入cpp
-		{
-			return _str;
-		}
-		iterator end()
-		{
-			return _str + _size;
-		}
-		iterator begin() const//暂时不知道如何将该方法写入cpp
-		{
-			return _str;
-		}
-		iterator end() const
-		{
-			return _str + _size;
-		}
+		iterator begin();//暂时不知道如何将该方法写入cpp
+		iterator end();
+		iterator begin() const;
+		iterator end() const;
 		string(const char* str="");
 		size_t size();
 		size_t size() const;

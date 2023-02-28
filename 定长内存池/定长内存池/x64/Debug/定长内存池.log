@@ -1,0 +1,27 @@
+﻿  源.cpp
+D:\vs\VC\Tools\MSVC\14.34.31933\include\execution(13): warning STL4038: The contents of <execution> are available only with C++17 or later.
+C:\Users\admin\Desktop\定长内存池\定长内存池\objectpool.h(37,1): warning C4311: “类型强制转换”: 从“void *”到“int”的指针截断
+C:\Users\admin\Desktop\定长内存池\定长内存池\objectpool.h(35,1): message : 在编译 类 模板 成员函数“void objectpool<int>::Delete(T *)”时
+          with
+          [
+              T=int
+          ]
+C:\Users\admin\Desktop\定长内存池\定长内存池\源.cpp(10,10): message : 查看对正在编译的函数 模板 实例化“void objectpool<int>::Delete(T *)”的引用
+          with
+          [
+              T=int
+          ]
+C:\Users\admin\Desktop\定长内存池\定长内存池\源.cpp(5,18): message : 查看对正在编译的 类 模板 实例化“objectpool<int>”的引用
+C:\Users\admin\Desktop\定长内存池\定长内存池\objectpool.h(37,1): warning C4302: “类型强制转换”: 从“void *”到“int”截断
+C:\Users\admin\Desktop\定长内存池\定长内存池\objectpool.h(13,1): warning C4312: “类型强制转换”: 从“int”转换到更大的“void *”
+C:\Users\admin\Desktop\定长内存池\定长内存池\objectpool.h(8,1): message : 在编译 类 模板 成员函数“T *objectpool<T>::New(void)”时
+          with
+          [
+              T=int
+          ]
+C:\Users\admin\Desktop\定长内存池\定长内存池\源.cpp(6,9): message : 查看对正在编译的函数 模板 实例化“T *objectpool<T>::New(void)”的引用
+          with
+          [
+              T=int
+          ]
+  定长内存池.vcxproj -> C:\Users\admin\Desktop\定长内存池\x64\Debug\定长内存池.exe
