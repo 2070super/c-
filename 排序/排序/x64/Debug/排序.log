@@ -1,0 +1,5 @@
+﻿  Sort.cpp
+C:\Users\admin\Desktop\排序\排序\Sort.cpp(7,2): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\admin\Desktop\排序\排序\Sort.cpp(10,3): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\admin\Desktop\排序\排序\Sort.cpp(61,38): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+  排序.vcxproj -> C:\Users\admin\Desktop\排序\x64\Debug\排序.exe
