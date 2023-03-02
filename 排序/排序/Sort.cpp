@@ -1,6 +1,14 @@
 #include<iostream>
 #include<vector>
 using namespace std;
+void print(vector<int>& nums)
+{
+	for (int i = 0; i < nums.size(); i++)
+	{
+		cout << nums[i] << ' ';
+	}
+	cout << endl;
+}
 void bubble_sort(vector<int>& nums)
 {
 	int flag;
@@ -22,11 +30,7 @@ void bubble_sort(vector<int>& nums)
 			}
 	}
 	cout << "Ã°ÅÝÅÅÐò£º";
-	for (int i = 0; i < nums.size(); i++)
-	{
-		cout << nums[i]<<' ';
-	}
-	cout << endl;
+	print(nums);
 }
 int partition(vector<int>& A,int low,int high)
 {
@@ -60,16 +64,43 @@ void quick_sort1(vector<int>& nums,int low,int high)
 {
 	quick_sort1(nums, 0, nums.size() - 1);
 	cout << "¿ìËÙÅÅÐò£º";
-	for (int i = 0; i < nums.size(); i++)
-	{
-		cout << nums[i] << ' ';
-	}
-	cout << endl;
+	print(nums);
 
 }
 void select_sort(vector<int>& nums)
 {
-
+	for (int i = 0; i < nums.size() - 2; i++)
+	{
+		int min = i;
+		for (int j = i + 1; j < nums.size(); j++)
+		{
+			if (nums[j] < nums[min])
+			{
+				min = j;
+			}
+			swap(nums[i], nums[min]);
+		}
+	}
+	cout << "Ñ¡ÔñÅÅÐò: ";
+	print(nums);
+}
+void insert_sort(vector<int> nums)
+{	
+	int j;
+	for (int i = 2; i < nums.size(); i++)
+	{
+		if (nums[i] < nums[i - 1])
+		{
+			nums[0] = nums[i];
+			for ( j = i - 1; nums[0] < nums[j]; j--)
+			{
+				nums[j + 1] = nums[j];
+			}
+			nums[j + 1] = nums[0];
+		}
+	}
+	cout << "²åÈëÅÅÐò£º";
+	print(nums);
 }
 int main()
 {
@@ -81,5 +112,7 @@ int main()
 	}
 	quick_sort(v);
 	bubble_sort(v);
+	select_sort(v);
+	insert_sort(v);
 	return 0;
 }
