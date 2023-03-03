@@ -69,23 +69,19 @@ void quick_sort1(vector<int>& nums,int low,int high)
 }
 void select_sort(vector<int>& nums)
 {
-	int j;
-	for (int i= 0; i < nums.size()-2; i++)
+	for (int i = 0; i < nums.size() - 2; i++)
 	{
 		int min = i;
-		for ( j = i + 1; j < nums.size(); j++)
+		for (int j = i + 1; j < nums.size(); j++)
 		{
 			if (nums[j] < nums[min])
 			{
 				min = j;
 			}
+			swap(nums[i], nums[min]);
 		}
-		if (min != i)
-		{
-			swap(nums[min], nums[i]);
-		}
-	}	
-	cout << "Ñ¡ÔñÅÅÐò£º";
+	}
+	cout << "Ñ¡ÔñÅÅÐò: ";
 	print(nums);
 }
 void insert_sort(vector<int>& nums)
