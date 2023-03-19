@@ -102,6 +102,32 @@ void insert_sort(vector<int>& nums)
 	cout << "Ñ¡ÔñÅÅÐò£º";
 	print(nums);
 }
+void Count_sort(vector<int>& nums)
+{
+	int max = 0;
+	vector<int> num;
+	for (int i = 0; i < nums.size(); i++)
+	{
+		if (max < nums[i])
+		{
+			max = nums[i];
+		}
+	}
+	vector<int> v(max+1, 0);
+	for (int i = 0; i < nums.size(); i++)
+	{
+		v[nums[i]]++;
+	}
+	for (int i = 0; i < v.size(); i++)
+	{
+		for (int j = 0; j < v[i]; j++)
+		{
+			num.push_back(i);
+		}
+	}
+	cout << "¼ÆÊýÅÅÐò£º";
+	print(num);
+}
 int main()
 {
 	vector<int> v;
@@ -114,5 +140,6 @@ int main()
 	bubble_sort(v);
 	insert_sort(v);
 	select_sort(v);
+	Count_sort(v);
 	return 0;
 }
