@@ -44,7 +44,7 @@ void print(VF_PTR* table)
 	}
 	cout << endl << endl;
 }
-int main()
+int man()
 {
 	derive c;
 	print((VF_PTR*)*((void**)&c));//64位下虚表一行八字节，32位下虚表是一行四个字节
