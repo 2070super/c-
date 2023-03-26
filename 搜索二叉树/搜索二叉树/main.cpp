@@ -1,4 +1,5 @@
 #include"BinarySearchTree.h"
+#include<iostream>
 int main()
 {
 	BsTree<int> t;
@@ -7,5 +8,8 @@ int main()
 	{
 		t.insert(e);
 	}
+	t.InOrder();
+	t.erase(3);
+	std::cout << std::endl;
 	t.InOrder();
 }

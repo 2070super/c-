@@ -77,49 +77,34 @@ public:
 			_InOrder(root->_right);
 		}
 	}
-	void erase(int value)
+	bool erase(k value)
 	{
 		Node* parent = nullptr;
 		Node* cur = _root;
 		while (cur)
 		{
-			if (cur->_key < key)
+			if (cur->_key < value)
 			{
 				parent = cur;
 				cur = cur->_right;
 			}
-			else if (cur->_key > key)
+			else if (cur->_key > value)
 			{
 				parent = cur;
 				cur = cur->_left;
-			}//查找完成
+			}
+			else
+			{
+		//查找完成
 			if (cur->_left == nullptr)//左子树为空
 			{
-				if (cur == root)//只有右子树
+				if (cur == _root)//只有右子树
 				{
 					_root = cur->_right;
 				}
 				else
 				{
-					if (cur == parent->_left)
-					{
-						parent->_left = cur->_right;
-					}
-					else
-					{
-						parent->_right == cur->_left;
-					}
-				}
-			}
-			else if (cur->_right == nullptr)
-			{
-				if (_root = cur)
-				{
-					_root = cur->_left;
-				}
-				else 
-				{
-					if (cur == parent->_left)
+					if (cur == parent->_left)//在左边
 					{
 						parent->_left = cur->_right;
 					}
@@ -128,18 +113,38 @@ public:
 						parent->_right = cur->_right;
 					}
 				}
+				delete cur;
+			}
+			else if (cur->_right == nullptr)
+			{
+				if (_root == cur)
+				{
+					_root = cur->_left;
+				}
+				else 
+				{
+					if (cur == parent->_left)
+					{
+						parent->_left = cur->_left;
+					}
+					else
+					{
+						parent->_right = cur->_left;
+					}
+				}
+				delete cur;
 			}
 			else
 			{
-				Node* minparent = nullptr;
+				Node* minparent = cur;
 				Node* min = cur->_right;
 				while (min->_left)
 				{
-					minparent = min;
+					minparent = min; 
 					min = min->_left;
 				}
-				swap(cur->_key, min->_key);
-				if (minparent->_left = min)
+				std::swap(cur->_key, min->_key);
+				if (minparent->_left == min)
 				{
 					minparent->_left = min->_right;
 				}
@@ -147,11 +152,29 @@ public:
 				{
 					minparent->_right = min->_right;
 				}
-				minparent->_left = min->_right;
 				delete min;
 			}
+			return true;
+		 }
+
 		}
+		return false;
+	}
+	bool find(const k& key)
+	{
+		return _find(_root, key);
 	}
 private:
 	Node* _root;
+	bool _find(Node* root, const k& key)
+	{
+		if (root == nullptr)
+		{
+			return false;
+		}
+		if (root->_key < key)
+		{
+			return _find(root->_right)
+		}
+	}
 };
