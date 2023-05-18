@@ -9,4 +9,5 @@ int main()
 		
 	}
 	t1.inorder();
+	std::cout << t1.isbalance() << std::endl;
 }

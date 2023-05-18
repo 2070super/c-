@@ -2,6 +2,7 @@
 #include<iostream>
 #include<assert.h>
 #include"avltree.h"
+#include<algorithm>
 template<class k ,class v>
 struct avltreenode
 {
@@ -252,7 +253,31 @@ public:
 		_inorder(_root);
 		std::cout << std::endl;
 	}
+	bool isbalance()
+	{
+		return _isbalance(_root);
+	}
 private:
+	bool _isbalance(node* root)
+	{
+		if (root == nullptr)
+		{
+			return true;
+		}
+		int leftht = hight(root->_left);
+		int righth = hight(root->_right);
+		return (abs(righth - leftht) <= 2) && _isbalance(root->_left) && _isbalance(root->_right);
+	}
+	int hight(node* root)
+	{
+		if (root == nullptr)
+		{
+			return 0;
+		}
+		int leftht = hight(root->_left);
+		int righht = hight(root->_right);
+		return std::max(leftht, righht) + 1;
+	}
 	node* _root=nullptr;
 	void _inorder(node* root)
 	{
