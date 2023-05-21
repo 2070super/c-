@@ -266,7 +266,12 @@ private:
 		}
 		int leftht = hight(root->_left);
 		int righth = hight(root->_right);
-		return (abs(righth - leftht) <= 2) && _isbalance(root->_left) && _isbalance(root->_right);
+		int diff = righth - leftht;
+		if (diff != root->_bf)
+		{
+			std::cout << root->_kv.first << "平衡因子异常" << std::endl;
+		}
+		return (abs(righth - leftht) < 2) && _isbalance(root->_left) && _isbalance(root->_right);
 	}
 	int hight(node* root)
 	{
